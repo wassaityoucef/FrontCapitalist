@@ -7,7 +7,7 @@ import { GET_WORLD } from './graphqlrequest';
 })
 export class WebserviceService {
 
-  server = 'http://localhost:4000/';
+  server = 'http://localhost:4000';
   user = '';
 
   constructor() { }

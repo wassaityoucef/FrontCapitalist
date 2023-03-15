@@ -9,20 +9,16 @@ import { World } from './world';
 })
 export class AppComponent {
 
-  // world: World = new World();
-  // constructor(private service: WebserviceService) {
+  server: string = 'http://localhost:4000';
 
-
-  // }
+  world: World = new World();
+constructor(private service: WebserviceService) {
+ service.getWorld().then(
+ world => {
+ this.world = world.data.getWorld;
+ });
+}
 
   title = 'FrontCapitalist';
-  ngOnInit() {
-    
-    // this.service.getWorld().then(
-    //   world => {
-    //   this.world = world.data.getWorld;
-    //   console.log("oklm")});
-    // }  
-
-  }
+  
 }

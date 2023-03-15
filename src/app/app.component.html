@@ -1,18 +1,79 @@
-<div class="header">
-  <div> logo monde </div>
-  <div> argent </div>
-  <div> multiplicateur </div>
 
-  <div> ID du joueur </div>
+
+<div class="header">
+  <div class="logo">
+    <img [attr.src]="server+world.logo" alt="Logo" />
+    <span class="logo-text">Knight Capitalist</span>
   </div>
-  <div class="main">
-  <div> liste des boutons de menu </div>
+  <div class="money">{{world.money}} 
+  </div>
+  <div class="multiplier">Multiplicateur</div>
+  <div class="worldname">{{world.name}}</div>
+</div>
+
+<div class="main">
+  <div class="sidebar">
+    <ul class="nav">
+      <li class="nav-item">
+        <a href="#" class="nav-link active">Unlocks</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Upgrades</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Managers</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Investors</a>
+      </li>
+    </ul>
+  </div>
+  
   <div class="product">
-  <div> premier produit </div>
-  <div> second produit </div>
-  <div> troisième produit </div>
-  <div> quatrième produit </div>
-  <div> cinquième produit </div>
-  <div> sixième produit </div>
- </div>
-  </div>
+    <div class="product-table">
+      <table>
+        <tr>
+          <td>
+    <div class="product-item">
+      <div class="product-icon"><i class="fas fa-mug-hot"></i></div>
+      <div class="product-title">Produit 1</div>
+    </div>
+  </td>
+  <td>
+    <div class="product-item">
+      <div class="product-icon"><i class="fas fa-bread-slice"></i></div>
+      <div class="product-title">Produit 2</div>
+    </div>
+  </td>
+  </tr>
+  <tr>
+    <td>
+<div class="product-item">
+<div class="product-icon"><i class="fas fa-mug-hot"></i></div>
+<div class="product-title">Produit 3</div>
+</div>
+</td>
+<td>
+<div class="product-item">
+<div class="product-icon"><i class="fas fa-bread-slice"></i></div>
+<div class="product-title">Produit 4</div>
+</div>
+</td>
+</tr>
+<tr>
+  <td>
+<div class="product-item">
+<div class="product-icon"><i class="fas fa-mug-hot"></i></div>
+<div class="product-title">Produit 5</div>
+</div>
+</td>
+<td>
+<div class="product-item">
+<div class="product-icon"><i class="fas fa-bread-slice"></i></div>
+<div class="product-title">Produit 6</div>
+</div>
+</td>
+</tr>
+  </table>  
+  
+</div>
