@@ -1,11 +1,11 @@
 
-
+<body>
 <div class="header">
   <div class="logo">
     <img [attr.src]="server+world.logo" alt="Logo" />
     <span class="logo-text">Knight Capitalist</span>
   </div>
-  <div class="money">{{world.money}} 
+  <div class="money">{{world.money}} <img src="../assets/images/Geo.webp" />
   </div>
   <div class="multiplier">Multiplicateur</div>
   <div class="worldname">{{world.name}}</div>
@@ -28,52 +28,18 @@
       </li>
     </ul>
   </div>
+
+
   
   <div class="product">
-    <div class="product-table">
-      <table>
-        <tr>
-          <td>
-    <div class="product-item">
-      <div class="product-icon"><i class="fas fa-mug-hot"></i></div>
-      <div class="product-title">Produit 1</div>
-    </div>
-  </td>
-  <td>
-    <div class="product-item">
-      <div class="product-icon"><i class="fas fa-bread-slice"></i></div>
-      <div class="product-title">Produit 2</div>
-    </div>
-  </td>
-  </tr>
-  <tr>
-    <td>
-<div class="product-item">
-<div class="product-icon"><i class="fas fa-mug-hot"></i></div>
-<div class="product-title">Produit 3</div>
-</div>
-</td>
-<td>
-<div class="product-item">
-<div class="product-icon"><i class="fas fa-bread-slice"></i></div>
-<div class="product-title">Produit 4</div>
-</div>
-</td>
-</tr>
-<tr>
-  <td>
-<div class="product-item">
-<div class="product-icon"><i class="fas fa-mug-hot"></i></div>
-<div class="product-title">Produit 5</div>
-</div>
-</td>
-<td>
-<div class="product-item">
-<div class="product-icon"><i class="fas fa-bread-slice"></i></div>
-<div class="product-title">Produit 6</div>
-</div>
-</td>
-</tr>
-  </table>  
-  
-</div>
+    <div> <app-product [prod]="world.products[0]"
+      class="product col-md-6"></app-product> </div>
+    <div> second produit </div>
+    <div> troisieme produit </div>
+    <div> quatrieme produit </div>
+    <div> cinquieme produit </div>
+    <div> sixieme produit </div>
+  </div>
+
+
+
