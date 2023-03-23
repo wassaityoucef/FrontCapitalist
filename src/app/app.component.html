@@ -5,9 +5,9 @@
     <img [attr.src]="server+world.logo" alt="Logo" />
     <span class="logo-text">Knight Capitalist</span>
   </div>
-  <div class="money">{{world.money}} <img src="../assets/images/Geo.webp" />
+  <div class="money"><span [innerHTML]="world.money | bigvalue"> </span> <img src="../assets/images/Geo.webp" />
   </div>
-  <div class="multiplier">Multiplicateur</div>
+  <div ><button class="multiplier" (click)=qtswap()>x{{qtmulti}}</button></div>
   <div class="worldname">{{world.name}}</div>
 </div>
 
@@ -32,13 +32,12 @@
 
   
   <div class="product">
-    <div> <app-product [prod]="world.products[0]"
+    <div> <app-product (notifyProduction)="onProductionDone($event)"
+      [prod]="world.products[0]" [qtmulti]="qtmulti" [wmoney]="wmoney"
       class="product col-md-6"></app-product> </div>
-    <div> second produit </div>
-    <div> troisieme produit </div>
-    <div> quatrieme produit </div>
-    <div> cinquieme produit </div>
-    <div> sixieme produit </div>
+    <div> <app-product (notifyProduction)="onProductionDone($event)"
+      [prod]="world.products[1]" [qtmulti]="qtmulti"
+      class="product col-md-6"></app-product> </div>
   </div>
 
 

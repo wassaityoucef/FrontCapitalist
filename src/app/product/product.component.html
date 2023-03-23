@@ -3,11 +3,20 @@
 
 
 <div class="lesdeux">
-    <div class="lepremier"><img src="../../assets/images/Geo.webp" />
-    <div class="buy"> Barre chargement  </div>
-
+    <div class="lepremier"><img src="{{server}}{{product.logo}}" (click)="startFabrication()"/>
+    <div class="buy"> {{product.name}}  </div>
+    <mat-progress-bar color="accent" class="progressbar" [value]="progressbarvalue"></mat-progress-bar>
     </div> 
-    <div class="lesecond"> <a href="#" class="acheter">Acheter</a></div>
+
+    
+
+
+    
+    
+
+    <div class="lesecond"><div class="Qte">{{product.quantite}}</div> <a href="#" class="acheter">Buy 1 pour {{product.cout}} <img src="../assets/images/Geo.webp" /></a></div>
     </div>
+
+    <div class="revenu"> Income : {{product.revenu}} <img src="../assets/images/Geo.webp" /></div>
    
 </body>
