@@ -11,6 +11,7 @@ export class ProductComponent {
   server: string = 'http://localhost:4000';
   lastupdate = 0;
   progressbarvalue = 0;
+  buymax=0
   
 
   constructor(private router: Router){}
@@ -30,7 +31,7 @@ export class ProductComponent {
  _wmoney!: number;
  @Input()
  set wmoney(value: number) {
- this._wmoney = value;
+ this.wmoney = value;
  //if (this._qtmulti && this.product) this.calcMaxCanBuy();
  }
 
@@ -41,6 +42,7 @@ export class ProductComponent {
  ngOnInit() {
   setInterval(() => {
     this.calcScore();
+    this.calcMaxCanBuy();
   }, 100);
 }
 
@@ -70,6 +72,30 @@ calcScore() {
 
 calcMaxCanBuy() {
 console.log("help")
+let prix : number
+let maxbuy : number
+
+maxbuy = Math.floor(Math.log(1 - this._wmoney * (1 - this.product.croissance) / this.product.cout) / Math.log(this.product.croissance))
+switch(this._qtmulti) {
+  case '1':
+     prix = 1*this.product.cout
+     this.buymax = Math.floor(prix)
+    break;
+  case '10':
+    prix = this.product.cout * (1 - (1 / (1 + this.product.croissance)) ^ 10) / (1 - (1 / (1 + this.product.croissance)))
+    this.buymax = Math.floor(prix)
+    break;
+  case '100':
+    prix = this.product.cout * (1 - (1 / (1 + this.product.croissance)) ^ 100) / (1 - (1 / (1 + this.product.croissance)))
+    this.buymax = Math.floor(prix)
+    break;
+  case 'Max':
+    
+    prix = this.product.cout * (1 - (1 / (1 + this.product.croissance)) ^ maxbuy) / (1 - (1 / (1 + this.product.croissance)))
+    this.buymax = Math.floor(prix);
+    break;
+  default:
+}
 }
 
 }
