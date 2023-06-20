@@ -70,3 +70,28 @@ query getWorld {
     }
   }
 }`;
+
+export const LANCER_PRODUCTION = gql`
+mutation Mutation($lancerProductionProduitId: Int!) {
+  lancerProductionProduit(id: $lancerProductionProduitId) {
+    name
+    revenu
+    vitesse
+  }
+}`;
+
+ export const ACHETER_PRODUIT = gql`
+ mutation Mutation($acheterQtProduitId: Int!, $quantite: Int!) {
+  acheterQtProduit(id: $acheterQtProduitId, quantite: $quantite) {
+    quantite
+    name
+  }
+ }`; 
+
+ export const ENGAGER_MANAGER = gql`
+ mutation EngagerManager($name: String!) {
+  engagerManager(name: $name) {
+    name
+  }
+ }`;
+ 

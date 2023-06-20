@@ -1,44 +1,142 @@
-
 <body>
-<div class="header">
-  <div class="logo">
-    <img [attr.src]="server+world.logo" alt="Logo" />
-    <span class="logo-text">Knight Capitalist</span>
-  </div>
-  <div class="money"><span [innerHTML]="world.money | bigvalue"> </span> <img src="../assets/images/Geo.webp" />
-  </div>
-  <div ><button class="multiplier" (click)=qtswap()>x{{qtmulti}}</button></div>
-  <div class="worldname">{{world.name}}</div>
-</div>
-
-<div class="main">
-  <div class="sidebar">
-    <ul class="nav">
-      <li class="nav-item">
-        <a href="#" class="nav-link active">Unlocks</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link">Upgrades</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link">Managers</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link">Investors</a>
-      </li>
-    </ul>
+   <!-- <audio id="background-music" loop autoplay>
+    <source src="../assets/music/cityoftears.mp3" type="audio/mpeg">
+  </audio>  -->
+  <div class="header">
+    <div class="logo">
+      <img [attr.src]="server+world.logo" alt="Logo" />
+      <span class="logo-text"> Knight Capitalist </span>
+    </div>
+    <div class="money"><span [innerHTML]="world.money | bigvalue"> </span> <img src="../assets/images/Geo.webp" />
+    </div>
+    <div><button class="multiplier" (click)=qtswap()>x{{qtmulti}}</button></div>
+    <div class="worldname"><input type="text" [(ngModel)]="username" (change)="onUsernameChanged(service)"
+        id="usernameInput" /></div>
   </div>
 
+  <div *ngIf="ShowUnlocks" class="modal">
+    <div class="utitle">
+      <h1>Unlock boosts by killing monsters ! </h1>
+      <button class="close" mat-raisedbutton (click)="ShowUnlocks = !ShowUnlocks">Close</button>
+    </div>
+    <div>
+      <div *ngFor="let product of world.products">
+        <div *ngFor="let palier of product.paliers">
+          <div *ngIf="!palier.unlocked" class="palierlayout">
+            <div>
+              <div class="plogo"><img class="pround" src='../assets/images/unlock.jpg' /> </div>
+            </div>
+            <div>
+              <div class="paliername"> Name : {{palier.name}} </div>
+              <div class="paliercible"> Occurs on {{ world.products[palier.idcible-1].name }} </div>
+              <div class="paliercost"> Need to slay : <span [innerHTML]="palier.seuil"> </span> ennemies !
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  
-  <div class="product">
-    <div> <app-product (notifyProduction)="onProductionDone($event)"
-      [prod]="world.products[0]" [qtmulti]="qtmulti" [wmoney]="wmoney"
+  <div *ngIf="ShowManagers" class="modal">
+    <div class="title">
+      <h1>Lookin' for help ? Here are the best of the bests ! </h1>
+      
+      <button class="close" mat-raisedbutton (click)="ShowManagers = !ShowManagers">Close</button>
+    </div>
+    <div>
+      <div *ngFor="let manager of world.managers">
+        <div *ngIf="!manager.unlocked" class="managerslayout">
+          <div>
+            <div class="mlogo">
+              <img class="round" [attr.src]="server+manager.logo" />
+            </div>
+          </div>
+          <div>
+            <div class="managername">Name: {{ manager.name }}</div>
+            <div class="managercible">Will slay {{ world.products[manager.idcible-1].name }} for you!</div>
+            <div class="managercost">Price: <span [innerHTML]="manager.seuil | bigvalue"></span> <img src="../assets/images/Geo.webp" /></div>
+          </div>
+          <div class="hire-container" (click)="hiremanager(manager)">
+            <div class="nail"><img src="../assets/images/nail.png" /></div>
+            <div class="hirebutton">
+              <button class="hire" [ngClass]="{'selectable': (world.money >= manager.seuil)}">Hire!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <div class="sidebar">
+      <ul class="nav">
+        <li class="nav-item">
+          <a href="#" class="nav-link active" (click)="ShowUnlocks=true" (click)="ShowManagers=false">Unlocks</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Upgrades</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" color="primary" (click)="ShowManagers=true">Managers</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Investors</a>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class="product">
+      <div>
+        <app-product (notifyProduction)="onProductionDone($event)" (notifyBuy)="onBuyDone($event)"
+          [prod]="world.products[0]" [qtmulti]="qtmulti" [wmoney]="world.money" class="product col-md-6"></app-product>
+      </div>
+      <div>
+        <app-product (notifyProduction)="onProductionDone($event)" (notifyBuy)="onBuyDone($event)"
+          [prod]="world.products[1]" [qtmulti]="qtmulti" [wmoney]="world.money" class="product col-md-6"></app-product>
+      </div>
+      <div>
+        <app-product (notifyProduction)="onProductionDone($event)" (notifyBuy)="onBuyDone($event)"
+          [prod]="world.products[2]" [qtmulti]="qtmulti" [wmoney]="world.money" class="product col-md-6"></app-product>
+      </div>
+      <div>
+        <app-product (notifyProduction)="onProductionDone($event)" (notifyBuy)="onBuyDone($event)"
+          [prod]="world.products[3]" [qtmulti]="qtmulti" [wmoney]="world.money" class="product col-md-6"></app-product>
+      </div>
+      <div>
+        <app-product (notifyProduction)="onProductionDone($event)" (notifyBuy)="onBuyDone($event)"
+          [prod]="world.products[4]" [qtmulti]="qtmulti" [wmoney]="world.money" class="product col-md-6"></app-product>
+      </div>
+      <div>
+        <app-product (notifyProduction)="onProductionDone($event)" (notifyBuy)="onBuyDone($event)"
+          [prod]="world.products[5]" [qtmulti]="qtmulti" [wmoney]="world.money" class="product col-md-6"></app-product>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <div class="product">
+    <div> <app-product (notifyProduction)="onProductionDone($event)"(notifyBuy)="onBuyDone($event)"
+      [prod]="world.products[0]" [qtmulti]="qtmulti" [wmoney]="world.money"
       class="product col-md-6"></app-product> </div>
-    <div> <app-product (notifyProduction)="onProductionDone($event)"
-      [prod]="world.products[1]" [qtmulti]="qtmulti"
+    <div> <app-product (notifyProduction)="onProductionDone($event)"(notifyBuy)="onBuyDone($event)"
+      [prod]="world.products[1]" [qtmulti]="qtmulti" [wmoney]="world.money"
       class="product col-md-6"></app-product> </div>
   </div>
+ <div> <app-product (notifyProduction)="onProductionDone($event)"(notifyBuy)="onBuyDone($event)"
+    [prod]="world.products[2]" [qtmulti]="qtmulti" [wmoney]="world.money"
+    class="product col-md-6"></app-product> </div>
+  <div> <app-product (notifyProduction)="onProductionDone($event)"(notifyBuy)="onBuyDone($event)"
+      [prod]="world.products[3]" [qtmulti]="qtmulti" [wmoney]="world.money"
+      class="product col-md-6"></app-product> </div>
+  <div> <app-product (notifyProduction)="onProductionDone($event)"(notifyBuy)="onBuyDone($event)"
+        [prod]="world.products[4]" [qtmulti]="qtmulti" [wmoney]="world.money"
+        class="product col-md-6"></app-product> </div>
+  <div> <app-product (notifyProduction)="onProductionDone($event)"(notifyBuy)="onBuyDone($event)"
+          [prod]="world.products[5]" [qtmulti]="qtmulti" [wmoney]="world.money"
+          class="product col-md-6"></app-product> </div> 
+ -->
 
-
-
+  <!-- </div> -->

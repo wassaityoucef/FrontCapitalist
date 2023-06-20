@@ -1,27 +1,35 @@
+*{
+font-family: 'Supernatural Knight';
+}
+
 body {
   background-image: url('../assets/images/bg.gif');
-  background-repeat: no-repeat;
+  background-repeat: 150%;
   background-size: cover;
   background-position: center;
     color: #fff;
     
   } 
 
+  :host ::ng-deep mat-progress-bar .mdc-linear-progress__bar 
+  {   transition: transform 100ms 0ms cubic-bezier(0.4, 0, 0.6, 1); }
+
 
   .multiplier {
-    background-color: #613dc1;
-    color: black;
+    background: none;
+    color: white;
     padding: 16px 32px;
     text-align: center;
     font-size: 16px;
     margin: 4px 2px;
-    transition-duration: 0.4s;
+    transition-duration: 0.1s;
     cursor: pointer;
-    border: 2 px solid black ;
+    border: 2 px solid white;
+    font-family: 'Supernatural Knight';
   }
 
   .multiplier:hover{
-    background-color: #4b1d76; 
+    background-color: #a511c0;
   }
   
   .header {
@@ -31,8 +39,10 @@ body {
     align-items: center;
     padding: 10px 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-top: 3px solid black;
-    border-bottom: 3px solid black;
+    border-top: 3px solid white;
+    border-bottom: 1px solid white;
+    background-image: url(../assets/images/headerbg.jpg);
+    background-size: 1000px;
   }
   
   .logo {
@@ -55,8 +65,10 @@ body {
     overflow-x: hidden;
     padding-top: 20px;
     border-bottom: 2px solid black;
-    border-right : 2px solid black;
+    border-right : 1px solid white;
     border-left : 2px solid black;
+    background-image: url(../assets/images/sidebarbg.png);
+    background-size: 250px;
     
   }
   .money img{
@@ -65,7 +77,7 @@ body {
   
   .nav {
     list-style-type: none;
-    margin: 0;
+    margin: 8px;
     padding: 0;
     
   }
@@ -78,7 +90,7 @@ body {
     display: block;
     color: #fff;
     text-align: center;
-    padding: 8px 16px;
+    padding: 4px 8px;
     text-decoration: none;
     font-weight: bold;
     border-radius: 20px;
@@ -88,6 +100,7 @@ body {
   .nav-link:hover {
     background-color: #858ae3;
   }
+
   .main {
     display: grid;
     grid-template-columns: 20% 80%;
@@ -95,6 +108,203 @@ body {
    .product {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin: 10px;
+    margin : 5px;
     }
+
+    input{
+      font-family: "Supernatural Knight", sans-serif;
+      background: none;
+      color : white;
+      border: 1 px solid white;
+      font-size : 15px;
+      
+    }
+    
+    
    
+    .modal {
+      position: fixed; /* reste en place */
+      z-index: 1; /* au dessus du reste */
+      width: 1000px; /* largeur */
+      height: 400px; /* hauteur */
+      overflow: auto; /* barre de scroll si besoin */
+      background-image: url('../assets/images/manabg.gif');
+    background-repeat: no-repeat;
+    background-size: 900px;
+    background-position: left; /* opaque */
+      border: solid;
+      top:10; /* a 10% du haut */
+      left:20%; /* a 20% de la gauche */
+      font-family: 'Supernatural Knight' ;
+
+       
+    }  
+     
+    .title{
+      position: relative;
+      text-align: center;
+      background-image: url(../assets/images/managerbg.jpg);
+      font-family: 'Supernatural Knight' ;
+      border: 2px solid white;
+    } 
+
+    .utitle{
+      position: relative;
+      text-align: center;
+      background-image: url(../assets/images/bgunlocks.webp);
+      border: 2px solid white;
+    } 
+
+.mlogo{
+  
+  display: flex;
+    align-items: center;
+    position: relative;
+    
+}
+
+.mlogo img{
+  width: 150px;
+  margin : 5px;
+  border: 2px solid black;
+}
+.managercost img{
+  width: 20px;
+}
+
+.hire {
+  background-color: red;
+  color: black;
+  padding: 12px 22px;
+  text-align: center;
+  font-size: 24px;
+  margin: 2px 1px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border: 2 px solid black ;
+}
+
+.close {
+  background-color: red;
+  color: black;
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 16px;
+  margin: 2px 1px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border: 2 px solid black ;
+  position: relative;
+  left : 400px;
+  top : -20px;
+}
+
+.managerslayout {
+  display: flex;
+  align-items: center;
+  height : 100px;
+  border : solid white 2px;
+  background-image: url(../assets/images/managerbg.jpg);
+}
+
+.mlogo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  padding-right: 5px;
+}
+
+.mlogo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.managername {
+  font-weight: bold;
+}
+
+.managercible {
+  font-style: italic;
+}
+
+.managercost {
+  display: flex;
+  align-items: center;
+}
+
+.managercost img {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+}
+
+.hire-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.nail img {
+  width: 280px;
+  height: 50px;
+}
+
+.hirebutton {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.hire {
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.hire.selectable {
+  background-color: #42b72a;
+}
+
+h1{
+  font-family: 'Supernatural Knight';
+}
+.productcol-md-6{
+  width : 200px;
+  height : 50px;
+}
+
+.palierlayout {
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: flex;
+  background-image: url('../assets/images/bgunlocks.webp');
+}
+
+.plogo {
+  float: left;
+  margin-right: 10px;
+  background-color: black;
+  background-image:url('../assets/images/unlock.jpg') ;
+}
+
+.pround {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.paliername {
+  font-weight: bold;
+}
+
+.paliercible {
+  margin-top: 5px;
+}
+
+.paliercost {
+  margin-top: 5px;
+}

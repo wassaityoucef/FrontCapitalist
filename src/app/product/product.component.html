@@ -1,22 +1,19 @@
 <body>
+    <audio id="background-music" loop autoplay>
+        <source src=".../assets/music/cityoftears.mp3" type="audio/mpeg">
+      </audio>
 
 
-
-<div class="lesdeux">
+ <div class="lesdeux">
     <div class="lepremier"><img src="{{server}}{{product.logo}}" (click)="startFabrication()"/>
     <div class="buy"> {{product.name}}  </div>
     <mat-progress-bar color="accent" class="progressbar" [value]="progressbarvalue"></mat-progress-bar>
     </div> 
 
-    
-
-
-    
-    
-
-    <div class="lesecond"><div class="Qte">{{product.quantite}}</div> <a href="#" class="acheter">Buy {{_qtmulti}} pour {{buymax}} <img src="../assets/images/Geo.webp" /></a></div>
+    <div class="lesecond"><div class="Qte">{{product.quantite}}</div> <a href="#" class="acheter"  [ngClass]="{'disabled': (_wmoney < buymax)}"  (click)="buyItem()">Buy {{nbaffiche}} for <span [innerHTML]="buymax | bigvalue"> </span> <img src="../assets/images/Geo.webp" /></a></div>
     </div>
 
-    <div class="revenu"> Income : {{product.revenu}} <img src="../assets/images/Geo.webp" /></div>
+    <div class="revenu"> Income : <span [innerHTML]="product.revenu | bigvalue"> </span> <img src="../assets/images/Geo.webp" /></div>
    
+    
 </body>
